@@ -1,0 +1,29 @@
+---
+title: "final_project_abuse_part"
+author: "wenyi and shibei"
+date: "11/18/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+That is the initial set up part, including loading all necessary package.
+```{r setup}
+library(haven)
+```
+
+Data import and check
+```{r data_import}
+download.file(url = "https://www.datafiles.samhsa.gov/sites/default/files/NSDUH_files/SAE/NSDUH_99_19_state_saes_final.sas7bdat", 
+
+destfile = "./abuse.sas7bdat", mode = "wb")
+abuse_df =read_sas(data_file = "./abuse.sas7bdat")
+```
+
+```{r}
+abuse_df
+```
+
+
