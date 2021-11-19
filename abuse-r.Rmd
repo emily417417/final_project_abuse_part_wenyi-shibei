@@ -1,0 +1,36 @@
+---
+title: "data-step1"
+author: "ShibeiXu"
+date: "2021/11/19"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+#Loading library and theme setting
+library(haven)
+library(tidyverse)
+library(rvest)
+library(viridis)
+knitr::opts_chunk$set(echo = TRUE,warning = FALSE,fig.width = 8, fig.height = 6,out.width = "90%")
+options(ggplot2.continuous.colour = "viridis",ggplot2.continuous.fill = "viridis")
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+```
+
+## Load the dataset and check the dataset
+
+```{r}
+abuse=read_sas("abuse.sas7bdat")
+summary(abuse)
+```
+## Data wrangling
+```{r}
+#First we we want to drop the NA value and only select the variable we want to include the analysis,then the outcome variable is pivoted into readable formate
+  abuse_1=abuse%>%
+    select(pyear,agegrp,outcome,area,BSAE,low_sae,up_sae)%>%
+    filter(outcome%in% c("COCYR", "IEMMON","MRJMON","SUMMON"))%>%
+    pivot_wider(names_from="outcome",values_from = "BSAE")
+
+```
+
