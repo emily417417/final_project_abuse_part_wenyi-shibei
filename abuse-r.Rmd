@@ -2,7 +2,7 @@
 title: "data-step1"
 author: "ShibeiXu"
 date: "2021/11/19"
-output: html_document
+output:html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -25,12 +25,17 @@ abuse=read_sas("abuse.sas7bdat")
 summary(abuse)
 ```
 ## Data wrangling
-```{r}
-#First we we want to drop the NA value and only select the variable we want to include the analysis,then the outcome variable is pivoted into readable formate
-  abuse_1=abuse%>%
-    select(pyear,agegrp,outcome,area,BSAE,low_sae,up_sae)%>%
-    filter(outcome%in% c("COCYR", "IEMMON","MRJMON","SUMMON"))%>%
-    pivot_wider(names_from="outcome",values_from = "BSAE")
 
+```{r}
+abuse_1=abuse%>%
+select(pyear,agegrp,outcome,area,BSAE)%>%
+filter(outcome%in% c("COCYR", "IEMMON","MRJMON","SUMMON","INCIDENCE","BNGALC","RISKMJ"))%>%
+mutate(outcome=as.factor(outcome),
+       pyear=as.factor(pyear),
+       agegrp=as.factor(agegrp),
+       area=as.factor(area),
+       BSAE=as.numeric(BSAE))%>%
+pivot_wider(names_from = outcome,values_from = BSAE)%>%
+  unnest(cols = everything() )
 ```
 
