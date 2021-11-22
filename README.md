@@ -55,3 +55,6 @@ This is our Abuse dataset.
 ##SUMMON
 •	SUMMON: illicit drug use in the past month (available for 1999-2000 through 2013 2014)
 
+##Analysis Plan
+1.Trends in XX product use over years
+(y~XX product use; x~years)
