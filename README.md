@@ -58,3 +58,7 @@ This is our Abuse dataset.
 ##Analysis Plan
 1.Trends in XX product use over years
 (y~XX product use; x~years)
+(marijuana vs. non-marijuana)
+(Overall;subgroups:age group and areas)
+
+2.
