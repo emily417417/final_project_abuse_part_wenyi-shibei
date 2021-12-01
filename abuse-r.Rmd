@@ -41,6 +41,18 @@ pivot_wider(names_from = outcome,values_from = BSAE)%>%
   unnest(cols = everything() )
 ```
 
+## The trends in illicit drug use in the past month in different age and area group
+```{r}
+abuse_1%>%
+  group_by(pyear,agegrp,area)%>%
+  summarize(
+  mean_SUMMON = mean(SUMMON)
+)%>%
+  ggplot(aes(x = pyear, y = mean_SUMMON)) +
+  facet_grid(~area) +
+  geom_point(aes(color = agegrp), alpha = .5)
+```
+
 ## The trends in alcohol use in different age and area group
 ```{r}
 abuse_1%>%
@@ -73,4 +85,11 @@ abuse_1%>%
   summarize( mean_MRJMON = mean(MRJMON), )%>% ggplot(aes(x = pyear, y = mean_MRJMON,group=1)) + geom_line()+geom_point()
 ```
 
+##Trends of illicit drug use other than marijuana used in last month, filter in area
+```{r}
+abuse_1%>%
+  group_by(pyear)%>% 
+  filter(area==1)%>% 
+  summarize( mean_IEMMON= mean(IEMMON), )%>% ggplot(aes(x = pyear, y = mean_IEMMON,group=1)) + geom_line()+geom_point()
+```
 
