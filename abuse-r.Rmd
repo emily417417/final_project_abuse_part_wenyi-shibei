@@ -41,6 +41,7 @@ pivot_wider(names_from = outcome,values_from = BSAE)%>%
   unnest(cols = everything() )
 ```
 
+## add a line, lables x-aixs year
 ```{r}
 abuse_1%>%
   group_by(pyear,agegrp,area)%>%
@@ -51,5 +52,20 @@ abuse_1%>%
   geom_point(aes(color = area), alpha = .5)
 ```
 
+```{r}
+abuse_1%>%
+  group_by(pyear,agegrp,area)%>%
+  summarize(
+  mean_COCYR = mean(COCYR),
+)%>%
+  ggplot(aes(x = pyear, y = mean_COCYR)) + 
+  geom_point(aes(color = area), alpha = .5)
+```
 
+## Overall plots [X] 
+```{r}
+abuse_1%>%
+  ggplot(aes(x = pyear, y = COCYR)) + 
+  geom_point(aes(color = area), alpha = .5)
+```
 
