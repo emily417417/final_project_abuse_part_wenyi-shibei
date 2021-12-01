@@ -53,6 +53,18 @@ abuse_1%>%
   geom_point(aes(color = agegrp), alpha = .5)
 ```
 
+## The trends in Marijuana use in different age and area group
+```{r}
+abuse_1%>%
+  group_by(pyear,agegrp,area)%>%
+  summarize(
+  mean_MRJMON = mean(MRJMON)
+)%>%
+  ggplot(aes(x = pyear, y = mean_MRJMON)) +
+  facet_grid(~area) +
+  geom_point(aes(color = agegrp), alpha = .5)
+```
+
 ##Trends of Marijuana used in last month, filter in area
 ```{r}
 abuse_1%>%
