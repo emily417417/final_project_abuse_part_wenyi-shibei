@@ -61,4 +61,12 @@ This is our Abuse dataset.
 (marijuana vs. non-marijuana)
 (Overall;subgroups:age group and areas)
 
-2.
+2.Trends of Marijuana used in last month, filter in area
+abuse_1%>%
+  group_by(pyear)%>%
+  filter(area==1)%>%
+  summarize(
+  mean_MRJMON = mean(MRJMON),
+)%>%
+  ggplot(aes(x = pyear, y = mean_MRJMON,group=1)) + 
+  geom_line()+geom_point()
