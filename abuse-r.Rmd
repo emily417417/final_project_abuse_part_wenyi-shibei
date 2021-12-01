@@ -3,6 +3,8 @@ title: "data-step1"
 author: "ShibeiXu"
 date: "2021/11/19"
 output:html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -38,4 +40,16 @@ mutate(outcome=as.factor(outcome),
 pivot_wider(names_from = outcome,values_from = BSAE)%>%
   unnest(cols = everything() )
 ```
+
+```{r}
+abuse_1%>%
+  group_by(pyear,agegrp,area)%>%
+  summarize(
+  mean_BNGALC = mean(BNGALC),
+)%>%
+  ggplot(aes(x = pyear, y = mean_BNGALC)) + 
+  geom_point(aes(color = area), alpha = .5)
+```
+
+
 
