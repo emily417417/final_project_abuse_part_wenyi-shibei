@@ -93,3 +93,27 @@ abuse_1%>%
   summarize( mean_IEMMON= mean(IEMMON), )%>% ggplot(aes(x = pyear, y = mean_IEMMON,group=1)) + geom_line()+geom_point()
 ```
 
+##Trends of average annual rate of first use of marijuana, filter in area
+```{r}
+abuse_1%>%
+  group_by(pyear)%>%
+  filter(area==1)%>%
+  summarize(
+  mean_INCIDENCE = mean(INCIDENCE),
+)%>%
+  ggplot(aes(x = pyear, y = mean_INCIDENCE,group=1)) + 
+  geom_line()+geom_point()
+```
+
+##Trends of perceptions of great risk from smoking marijuana once a month, filter in area
+```{r}
+ abuse_1%>%
+  group_by(pyear)%>%
+  filter(area==1)%>%
+  summarize(
+  mean_RISKMJ = mean(RISKMJ),
+)%>%
+  ggplot(aes(x = pyear, y = mean_RISKMJ,group=1)) + 
+  geom_line()+geom_point()
+```
+
