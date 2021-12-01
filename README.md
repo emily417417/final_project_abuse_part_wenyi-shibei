@@ -79,3 +79,12 @@ abuse_1%>%
 )%>%
   ggplot(aes(x = pyear, y = mean_INCIDENCE,group=1)) + 
   geom_line()+geom_point()
+  
+  abuse_1%>%
+  group_by(pyear)%>%
+  filter(area==1)%>%
+  summarize(
+  mean_RISKMJ = mean(RISKMJ),
+)%>%
+  ggplot(aes(x = pyear, y = mean_RISKMJ,group=1)) + 
+  geom_line()+geom_point()
