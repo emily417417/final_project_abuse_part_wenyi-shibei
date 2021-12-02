@@ -1,6 +1,6 @@
 ---
 title: "data-step1"
-author: "ShibeiXu"
+author: "ShibeiXu & WenyiLiu"
 date: "2021/11/19"
 output:html_document
 editor_options: 
@@ -117,3 +117,14 @@ abuse_1%>%
   geom_line()+geom_point()
 ```
 
+##Trends of alcohol, filter in area
+```{r}
+ abuse_1%>%
+  group_by(pyear)%>%
+  filter(area==1)%>%
+  summarize(
+  mean_BNGALC = mean(BNGALC),
+)%>%
+  ggplot(aes(x = pyear, y = mean_BNGALC,group=1)) + 
+  geom_line()+geom_point()
+```
